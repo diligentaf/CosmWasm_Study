@@ -1,0 +1,33 @@
+{
+  "name": "simple-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "simple-example",
+  "author": "Milan Steiner",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cosmjs/faucet-client": "^0.28.11",
+    "cosmwasm": "^1.1.1",
+    "gatsby": "^4.19.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "path-browserify": "^1.0.1",
+    "stream-browserify": "^3.0.0",
+    "typescript": "^4.7.4"
+  }
+}
