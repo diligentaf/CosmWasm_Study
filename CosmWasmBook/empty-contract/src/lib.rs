@@ -12,22 +12,81 @@
 //     Ok(Response::new())
 // }
 
-use cosmwasm_std::{
-    entry_point, to_binary, Binary, Deps, DepsMut, Empty, Env, MessageInfo,
-    Response, StdResult,
-};
-use serde::{Deserialize, Serialize};
+/// ###################################################################3
 
-#[derive(Serialize, Deserialize)]
-struct QueryResp {
-    message: String,
+// use cosmwasm_std::{
+//     entry_point, to_binary, Binary, Deps, DepsMut, Empty, Env, MessageInfo,
+//     Response, StdResult,
+// };
+// use serde::{Deserialize, Serialize};
+
+// #[derive(Serialize, Deserialize)]
+// struct QueryResp {
+//     message: String,
+// }
+
+// #[entry_point]
+// pub fn query(_deps: Deps, _env: Env, _msg: Empty) -> StdResult<Binary> {
+//     let resp = QueryResp {
+//         message: "Hello World".to_owned(),
+//     };
+
+//     to_binary(&resp)
+// }
+
+// ###################################################################3
+
+// use cosmwasm_std::{
+//     entry_point, to_binary, Binary, Deps, DepsMut, Empty, Env, MessageInfo,
+//     Response, StdResult,
+// };
+
+// use serde::{Deserialize, Serialize};
+//  #[derive(Serialize, Deserialize)]
+//  pub struct GreetResp {
+//      message: String,
+//  }
+ 
+//  #[entry_point]
+//  pub fn query(_deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
+//      use QueryMsg::*;
+ 
+//      match msg {
+//          Greet {} => to_binary(&query::greet()?),
+//      }
+//  }
+ 
+//  mod query {
+//      use super::*;
+ 
+//      pub fn greet() -> StdResult<GreetResp> {
+//          let resp = GreetResp {
+//              message: "Hello World".to_owned(),
+//          };
+ 
+//          Ok(resp)
+//      }
+//  }
+
+// ###################################################################3
+
+use cosmwasm_std::{
+    entry_point, Binary, Deps, DepsMut, Empty, Env, MessageInfo, Response, StdResult,
+};
+
+mod contract;
+mod msg;
+
+#[entry_point]
+pub fn instantiate(deps: DepsMut, env: Env, info: MessageInfo, msg: Empty)
+  -> StdResult<Response>
+{
+    contract::instantiate(deps, env, info, msg)
 }
 
 #[entry_point]
-pub fn query(_deps: Deps, _env: Env, _msg: Empty) -> StdResult<Binary> {
-    let resp = QueryResp {
-        message: "Hello World".to_owned(),
-    };
-
-    to_binary(&resp)
+pub fn query(deps: Deps, env: Env, msg: msg::QueryMsg)
+  -> StdResult<Binary>
+{
+    contract::query(deps, env, msg)
 }
